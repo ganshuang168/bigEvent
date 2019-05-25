@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+                // 给出n阶方阵里所有数，求方阵里所有数的和。
+                var count = 0;
+            
+            
+                function swap(arr, i, j) {
+                    if (i != j) {
+                        var temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            
+            
+                function show(arr) {
+                    document.write(arr + "<br />");
+                }
+            
+            
+                function fn(arr, n) { //为第n个位置选择元素  
+                    for (var i = n; i < arr.length; i++) {
+                        swap(arr, i, n);
+                        if (n + 1 < arr.length - 1) { //判断数组中剩余的待全排列的元素是否大于1个  
+                            fn(arr, n + 1); //从第n+1个下标进行全排列  
+                        } else {
+                            show(arr); //显示一组结果  
+                            count++;
+                        }
+                        swap(arr, i, n); //换回来，恢复原来的数组
+                    }
+                }
+            
+            
+                function perm(n) {
+                    var arr = []
+                    for (var i = 1; i <= n; i++) {
+                        arr.push(i)
+                    }
+                    fn(arr, 0)
+                    console.log(count)
+                }
+                perm(3);
+            </script>
+</body>
+</html>
